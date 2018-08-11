@@ -1,0 +1,32 @@
+package ${package_path};
+
+<#if (hasDateColumn)>
+import java.util.Date;
+</#if>
+<#if (hasBigDecimalColumn)>
+import java.math.BigDecimal;
+</#if>
+
+import com.journey.cmrh.common.base.pojo.BaseEntity;
+import lombok.Data;
+
+/**
+ * entity:${class_name}
+ * @author ${author}
+ * @version 1.0
+ * @since ${sysDate?date}
+ */
+@Data
+public class ${class_name} extends BaseEntity<${class_name}> {
+    private static final long serialVersionUID = 1L;
+
+<#list table_column as c>
+    <#if (c.name!="uuid")>private ${c.type} ${c.nameJ}; <#if (c.remark?exists && c.remark!="")> /* ${c.remark} */ </#if>
+    </#if>
+</#list>
+
+    public ${class_name}() {
+    }
+
+
+}
