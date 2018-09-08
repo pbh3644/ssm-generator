@@ -15,7 +15,9 @@ import java.util.UUID;
 
 
 /**
- * pojo 基类
+ * @Author：pbh
+ * @Date：2018-09-08 16:18
+ * @Description：pojo基类
  */
 public abstract class BaseEntity<T> implements Serializable {
 
@@ -319,17 +321,22 @@ public abstract class BaseEntity<T> implements Serializable {
      */
     @JsonIgnore
     public String getDateTypeTime() {
-        Date dateTypeTime = null; //默认全部
+        //默认全部
+        Date dateTypeTime = null;
         final String dateTypeTemp = getDateType();
         if (StringUtils.isNotBlank(dateTypeTemp)) {
             final Date now = DateUtils.getNow();
-            if (CommonConstant.DATE_TYPE_WEEK.equals(dateTypeTemp)) {  //近7天
+            //近7天
+            if (CommonConstant.DATE_TYPE_WEEK.equals(dateTypeTemp)) {
                 dateTypeTime = DateUtils.rollDay(now, -7);
-            } else if (CommonConstant.DATE_TYPE_MONTH.equals(dateTypeTemp)) {   //近1月
+                //近1月
+            } else if (CommonConstant.DATE_TYPE_MONTH.equals(dateTypeTemp)) {
                 dateTypeTime = DateUtils.rollMon(now, -1);
-            } else if (CommonConstant.DATE_TYPE_QUARTER.equals(dateTypeTemp)) { //近3月
+                //近3月
+            } else if (CommonConstant.DATE_TYPE_QUARTER.equals(dateTypeTemp)) {
                 dateTypeTime = DateUtils.rollMon(now, -3);
-            } else if (CommonConstant.DATE_TYPE_YEAR.equals(dateTypeTemp)) {    //近1年
+                //近1年
+            } else if (CommonConstant.DATE_TYPE_YEAR.equals(dateTypeTemp)) {
                 dateTypeTime = DateUtils.rollYear(now, -1);
             }
         }
@@ -350,13 +357,17 @@ public abstract class BaseEntity<T> implements Serializable {
         if (StringUtils.isNotBlank(this.getDateType())) {
             String endTime = DateUtils.dateStr4(DateUtils.getNow());
             String startTime = null;
-            if (CommonConstant.DATE_TYPE_WEEK.equals(this.getDateType())) {  //近7天
+            //近7天
+            if (CommonConstant.DATE_TYPE_WEEK.equals(this.getDateType())) {
                 startTime = DateUtils.dateStr4(DateUtils.rollDay(DateUtils.getNow(), -7));
-            } else if (CommonConstant.DATE_TYPE_MONTH.equals(this.getDateType())) {   //近1月
+                //近1月
+            } else if (CommonConstant.DATE_TYPE_MONTH.equals(this.getDateType())) {
                 startTime = DateUtils.dateStr4(DateUtils.rollMon(DateUtils.getNow(), -1));
-            } else if (CommonConstant.DATE_TYPE_QUARTER.equals(this.getDateType())) { //近3月
+                //近3月
+            } else if (CommonConstant.DATE_TYPE_QUARTER.equals(this.getDateType())) {
                 startTime = DateUtils.dateStr4(DateUtils.rollMon(DateUtils.getNow(), -3));
-            } else if (CommonConstant.DATE_TYPE_YEAR.equals(this.getDateType())) {    //近1年
+                //近1年
+            } else if (CommonConstant.DATE_TYPE_YEAR.equals(this.getDateType())) {
                 startTime = DateUtils.dateStr4(DateUtils.rollYear(DateUtils.getNow(), -1));
             }
             this.setStartTime(startTime);

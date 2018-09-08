@@ -6,7 +6,9 @@ package com.journey.cmrh.common.base.mapper;
 import java.util.List;
 
 /**
- * DAO支持类实现
+ * @Author：pbh
+ * @Date：2018-09-08 16:18
+ * @Description：pojoDAO支持类实现
  */
 public interface BaseMapper<T> {
 
@@ -22,6 +24,7 @@ public interface BaseMapper<T> {
      * 批量插入
      *
      * @param list 插入的列表
+     * @return count 插入的条数
      */
     int insertBatch(List<T> list);
 
@@ -29,7 +32,7 @@ public interface BaseMapper<T> {
      * 删除数据
      *
      * @param id 删除的记录的id
-     * @return 删除的条数
+     * @return int 删除的条数
      */
     int delete(String id);
 
@@ -37,7 +40,7 @@ public interface BaseMapper<T> {
      * 批量删除
      *
      * @param ids 所有需要删除的记录的id
-     * @return 删除的条数
+     * @return int 删除的条数
      */
     int deleteBatch(String[] ids);
 
@@ -45,6 +48,7 @@ public interface BaseMapper<T> {
      * 逻辑删除（更新is_delete字段为1）
      *
      * @param id 需要逻辑删除的字段
+     * @return 删除的条数
      */
     int deleteLogic(String id);
 

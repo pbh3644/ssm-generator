@@ -7,15 +7,14 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * 对分页的基本数据进行一个简单的封装
- *
- * @param <T>
+ * @Author：pbh
+ * @Date：2018-09-08 16:18
+ * @Description：对分页的基本数据进行一个简单的封装
  */
-
 public class Page<T> implements Serializable {
 
     private static final long serialVersionUID = -9200442566817527918L;
-    public static final int defaultExportPageSize = 5000;
+    public static final int DEFAULTE_XPORTPAGE_SIZE = 5000;
 
     /**
      * 排序的字段(数据库字段)
@@ -44,9 +43,9 @@ public class Page<T> implements Serializable {
      */
     private int pageSize = 10;
     /**
-     * 总记录数
+     * 总记录数 设置为“-1”表示不查询总
      */
-    private int count;// 总记录数，设置为“-1”表示不查询总数
+    private int count;
     /**
      * 总页数
      */
@@ -213,7 +212,8 @@ public class Page<T> implements Serializable {
     }
 
     public void setSort(String sort) {
-        this.by = sort;//排序的属性，仅供缓存操作使用
+        //排序的属性，仅供缓存操作使用
+        this.by = sort;
         this.sort = StringUtils.toUnderScoreCase(sort);
     }
 

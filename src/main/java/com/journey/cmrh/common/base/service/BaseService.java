@@ -4,9 +4,10 @@ import com.journey.cmrh.common.base.pojo.Page;
 
 import java.util.List;
 
-
 /**
- * Service基类
+ * @Author：pbh
+ * @Date：2018-09-08 16:18
+ * @Description：Service基类
  */
 public interface BaseService<T> {
 
