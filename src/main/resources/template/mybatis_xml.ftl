@@ -24,20 +24,29 @@
 		<#list table_column as c>
 			<#if (c.type=="String")>
             <if test="${c.nameJ} != null and ${c.nameJ} != ''">and ${c.name?upper_case} = ${r"#"}{${c.nameJ}}</if>
-            <#else>
-			<if test="${c.nameJ} != null">and ${c.name?upper_case} = ${r"#"}{${c.nameJ}}</if>
+            </#if>
+            <#if (c.type=="Long")>
+			<if test="${c.nameJ} != null and ${c.nameJ} != 0">and ${c.name?upper_case} = ${r"#"}{${c.nameJ}}</if>
+            <#else >
+            <if test="${c.nameJ} != null">and ${c.name?upper_case} = ${r"#"}{${c.nameJ}}</if>
             </#if>
         </#list>
         </trim>
     </sql>
 
     <insert id="insert" parameterType="${entity_package}.${class_name}">
-        insert into ${table_name}( <include refid="table_columns" /> )
-        values ( <include refid="entity_properties" /> )
+        insert into ${table_name}(
+        <include refid="table_columns"/>
+        )
+        values (
+        <include refid="entity_properties"/>
+        )
     </insert>
 
     <insert id="insertBatch" parameterType="java.util.List">
-        insert into ${table_name}( <include refid="table_columns" /> )
+        insert into ${table_name}(
+        <include refid="table_columns"/>
+        )
         values
         <foreach collection="list" item="item" index="index" separator=",">
             (
@@ -86,7 +95,9 @@
 			<#list table_column as c>
 				<#if (c_index>=1)>
                     <#if (c.type=="String")>
-						<if test="item.${c.nameJ} != null and item.${c.nameJ} != ''">${c.name?upper_case} = ${r"#"}{item.${c.nameJ}},</if>
+						<if test="item.${c.nameJ} != null and item.${c.nameJ} != ''">${c.name?upper_case} = ${r"#"}
+                            {item.${c.nameJ}},
+                        </if>
                     <#else>
 						<if test="item.${c.nameJ} != null">${c.name?upper_case} = ${r"#"}{item.${c.nameJ}},</if>
                     </#if>
@@ -98,24 +109,27 @@
     </update>
 
     <select id="findAll" resultMap="${class_name?uncap_first}ResultMap">
-        select <include refid="table_columns" />
+        select
+        <include refid="table_columns"/>
         from ${table_name}
     </select>
 
     <select id="findList" resultMap="${class_name?uncap_first}ResultMap">
-        select <include refid="table_columns" />
+        select
+        <include refid="table_columns"/>
         from ${table_name}
-        <include refid="page_where" />
+        <include refid="page_where"/>
     </select>
 
-    <select id="getCount" resultType="int" >
+    <select id="getCount" resultType="int">
         select count(${table_column[0].name}) from ${table_name}
-        <include refid="page_where" />
+        <include refid="page_where"/>
     </select>
 
 
-    <select id="get" resultMap="${class_name?uncap_first}ResultMap" parameterType="java.lang.Long" >
-        select <include refid="table_columns" />
+    <select id="get" resultMap="${class_name?uncap_first}ResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="table_columns"/>
         from ${table_name}
         where ${table_column[0].name} = ${r"#"}{id}
     </select>
