@@ -5,7 +5,6 @@ import com.journey.cmrh.common.base.pojo.BaseEntity;
 import com.journey.cmrh.common.base.pojo.Page;
 import com.journey.cmrh.common.base.service.BaseService;
 import com.journey.cmrh.common.exception.BussinessException;
-import com.journey.cmrh.common.util.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +23,16 @@ import java.util.List;
  */
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true, rollbackFor = BussinessException.class)
 public class BaseServiceImpl<D extends BaseMapper<T>, T extends Serializable> implements BaseService<T> {
+
+    /**
+     * 数字 ，0
+     */
+    public static final int INT_ZERO = 0;
+
+    /**
+     * 一次批量操作的数据量
+     */
+    public static final int BATCH_OPERATION_COUNT = 50;
 
     /**
      * 持久层对象
@@ -82,13 +91,13 @@ public class BaseServiceImpl<D extends BaseMapper<T>, T extends Serializable> im
             ((BaseEntity) t).preInsert();
             subList.add(t);
             //子列表已满,批量提交
-            if (subList.size() == Constant.BATCH_OPERATION_COUNT) {
+            if (subList.size() == BATCH_OPERATION_COUNT) {
                 dao.insertBatch(subList);
                 subList = new ArrayList<T>();
             }
         }
         //子列表未满的部分,做一次批量提交
-        if (subList.size() > 0 && subList.size() < Constant.BATCH_OPERATION_COUNT) {
+        if (subList.size() > 0 && subList.size() < BATCH_OPERATION_COUNT) {
             dao.insertBatch(subList);
         }
     }
@@ -104,7 +113,7 @@ public class BaseServiceImpl<D extends BaseMapper<T>, T extends Serializable> im
             ((BaseEntity) entity).preUpdate();
             result = dao.update(entity);
         }
-        if (result == Constant.INT_ZERO) {
+        if (result == INT_ZERO) {
             throw new BussinessException("No saved records");
         }
     }
@@ -114,7 +123,7 @@ public class BaseServiceImpl<D extends BaseMapper<T>, T extends Serializable> im
     public void update(T entity) {
         ((BaseEntity) entity).preUpdate();
         int result = dao.update(entity);
-        if (result == Constant.INT_ZERO) {
+        if (result == INT_ZERO) {
             throw new BussinessException("No updated records");
         }
     }
@@ -131,18 +140,18 @@ public class BaseServiceImpl<D extends BaseMapper<T>, T extends Serializable> im
             ((BaseEntity) t).preUpdate();
             subList.add(t);
             //子列表已满,批量提交
-            if (subList.size() == Constant.BATCH_OPERATION_COUNT) {
+            if (subList.size() == BATCH_OPERATION_COUNT) {
                 int result = dao.updateBatch(subList);
-                if (result == Constant.INT_ZERO) {
+                if (result == INT_ZERO) {
                     throw new BussinessException("No updated records");
                 }
                 subList = new ArrayList<T>();
             }
         }
         //子列表未满的部分,做一次批量提交
-        if (subList.size() > 0 && subList.size() < Constant.BATCH_OPERATION_COUNT) {
+        if (subList.size() > 0 && subList.size() < BATCH_OPERATION_COUNT) {
             int result = dao.updateBatch(subList);
-            if (result == Constant.INT_ZERO) {
+            if (result == INT_ZERO) {
                 throw new BussinessException("No updated records");
             }
         }
@@ -152,7 +161,7 @@ public class BaseServiceImpl<D extends BaseMapper<T>, T extends Serializable> im
     @Override
     public void delete(final String id) {
         int result = dao.delete(id);
-        if (result == Constant.INT_ZERO) {
+        if (result == INT_ZERO) {
             throw new BussinessException("Record not deleted, id=" + id);
         }
     }
@@ -161,7 +170,7 @@ public class BaseServiceImpl<D extends BaseMapper<T>, T extends Serializable> im
     @Override
     public void deleteBatch(final String[] ids) {
         int result = dao.deleteBatch(ids);
-        if (result == Constant.INT_ZERO) {
+        if (result == INT_ZERO) {
             throw new BussinessException("Records not deleted, ids=" + Arrays.toString(ids));
         }
     }
@@ -170,10 +179,9 @@ public class BaseServiceImpl<D extends BaseMapper<T>, T extends Serializable> im
     @Override
     public void deleteLogic(final String id) {
         final int result = dao.deleteLogic(id);
-        if (result == Constant.INT_ZERO) {
+        if (result == INT_ZERO) {
             throw new BussinessException("Record not deleted, id=" + id);
         }
     }
-
 
 }

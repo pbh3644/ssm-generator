@@ -3,9 +3,7 @@ package com.journey.cmrh.common.base.pojo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.journey.cmrh.common.util.CommonConstant;
-import com.journey.cmrh.common.util.DateUtils;
-import com.journey.cmrh.common.util.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
@@ -96,7 +94,7 @@ public abstract class BaseEntity<T> implements Serializable {
      */
     public BaseEntity(final String uuid) {
         super();
-        this.uuid = StringUtils.isBlank(uuid) ? genUuid() : uuid;
+        this.uuid = StringUtils.isEmpty(uuid) ? genUuid() : uuid;
     }
 
     /**
@@ -252,14 +250,6 @@ public abstract class BaseEntity<T> implements Serializable {
         this.fields = StringUtils.isBlank(fields) ? null : fields.split(",");
     }
 
-    /**
-     * 获得日期类型
-     *
-     * @return
-     */
-    public String getDateType() {
-        return CommonConstant.DATE_TYPE_ALL.equals(dateType) ? "" : dateType;
-    }
 
     /**
      * 设置日期类型
@@ -270,18 +260,6 @@ public abstract class BaseEntity<T> implements Serializable {
         this.dateType = dateType;
     }
 
-    /**
-     * 获得开始时间
-     *
-     * @return
-     */
-    public String getStartTime() {
-        String temp = startTime;
-        if (StringUtils.isNotBlank(temp)) {
-            temp = DateUtils.getDateStart(DateUtils.parseDate(temp));
-        }
-        return temp;
-    }
 
     /**
      * 设置开始时间
@@ -293,19 +271,6 @@ public abstract class BaseEntity<T> implements Serializable {
     }
 
     /**
-     * 获得结束时间
-     *
-     * @return
-     */
-    public String getEndTime() {
-        String temp = endTime;
-        if (StringUtils.isNotBlank(temp)) {
-            temp = DateUtils.getDateEnd(DateUtils.parseDate(temp));
-        }
-        return temp;
-    }
-
-    /**
      * 设置结束时间
      *
      * @param endTime
@@ -314,65 +279,12 @@ public abstract class BaseEntity<T> implements Serializable {
         this.endTime = endTime;
     }
 
-    /**
-     * 根据日期类型获得相应的开始时间
-     *
-     * @return
-     */
-    @JsonIgnore
-    public String getDateTypeTime() {
-        //默认全部
-        Date dateTypeTime = null;
-        final String dateTypeTemp = getDateType();
-        if (StringUtils.isNotBlank(dateTypeTemp)) {
-            final Date now = DateUtils.getNow();
-            //近7天
-            if (CommonConstant.DATE_TYPE_WEEK.equals(dateTypeTemp)) {
-                dateTypeTime = DateUtils.rollDay(now, -7);
-                //近1月
-            } else if (CommonConstant.DATE_TYPE_MONTH.equals(dateTypeTemp)) {
-                dateTypeTime = DateUtils.rollMon(now, -1);
-                //近3月
-            } else if (CommonConstant.DATE_TYPE_QUARTER.equals(dateTypeTemp)) {
-                dateTypeTime = DateUtils.rollMon(now, -3);
-                //近1年
-            } else if (CommonConstant.DATE_TYPE_YEAR.equals(dateTypeTemp)) {
-                dateTypeTime = DateUtils.rollYear(now, -1);
-            }
-        }
-        return dateTypeTime == null ? null : DateUtils.getDateEnd(dateTypeTime);
-    }
 
     /**
      * 封装JDK自带的UUID, 通过Random数字生成, 中间无-分割.
      */
     public static String genUuid() {
         return UUID.randomUUID().toString().replaceAll("-", "");
-    }
-
-    /**
-     * 根据dateType设置相应的startTime和endTime
-     */
-    public void putQueryTimeSection() {
-        if (StringUtils.isNotBlank(this.getDateType())) {
-            String endTime = DateUtils.dateStr4(DateUtils.getNow());
-            String startTime = null;
-            //近7天
-            if (CommonConstant.DATE_TYPE_WEEK.equals(this.getDateType())) {
-                startTime = DateUtils.dateStr4(DateUtils.rollDay(DateUtils.getNow(), -7));
-                //近1月
-            } else if (CommonConstant.DATE_TYPE_MONTH.equals(this.getDateType())) {
-                startTime = DateUtils.dateStr4(DateUtils.rollMon(DateUtils.getNow(), -1));
-                //近3月
-            } else if (CommonConstant.DATE_TYPE_QUARTER.equals(this.getDateType())) {
-                startTime = DateUtils.dateStr4(DateUtils.rollMon(DateUtils.getNow(), -3));
-                //近1年
-            } else if (CommonConstant.DATE_TYPE_YEAR.equals(this.getDateType())) {
-                startTime = DateUtils.dateStr4(DateUtils.rollYear(DateUtils.getNow(), -1));
-            }
-            this.setStartTime(startTime);
-            this.setEndTime(endTime);
-        }
     }
 
     /**

@@ -6,12 +6,16 @@ import com.journey.cmrh.config.TemplateMapping;
 
 import java.io.File;
 
+
 /**
- * @author 
- */
+ * @author pangbohuan
+ * @description MyUtils
+ * @date 2018-08-20 14:03
+ **/
 public class MyUtils {
 
     private static SetupConfig config = SetupConfig.getInstance();
+    private final static int TWO = 2;
 
     public static String getTemplatePath(TemplateMapping m) {
         return config.getTemplateDir() + File.separator + m.getTemplate();
@@ -34,12 +38,13 @@ public class MyUtils {
         if (g == null) {
             return StringUtil.javaStyleOfTableName(tableName);
         }
-        System.out.println("组名不为空"+g);
-        return g ;
+        System.out.println("组名不为空" + g);
+        return g;
     }
 
     /**
      * 输出路径
+     *
      * @param m
      * @param tableName
      * @return
@@ -47,9 +52,9 @@ public class MyUtils {
     public static String getOutPutPath(TemplateMapping m, String tableName) {
         String path = SetupConfig.USER_DIR + SetupConfig.SEPARATOR
                 + "target" + SetupConfig.SEPARATOR
-                + m.buildDir(config.getProject(), config.getPackagePath(), config.getModel()) + SetupConfig.SEPARATOR;//getModelName(tableName, "/")
+                + m.buildDir(config.getProject(), config.getPackagePath(), config.getModel()) + SetupConfig.SEPARATOR;
         path += m.getsPadding() + StringUtil.className(tableName) + m.getePadding() + "." + m.getSuffix();
-        System.out.println("#####"+getModelName(tableName, "/"));
+        System.out.println("#####" + getModelName(tableName, "/"));
         System.out.println("getOutPutPath:" + path);
         mkdir(path);
         return path;
@@ -58,12 +63,10 @@ public class MyUtils {
     public static void mkdir(String filePath) {
         int index = filePath.lastIndexOf("\\");
         int index2 = filePath.lastIndexOf("/");
-        if (index + index2 == -2) return;
+        if (index + index2 == -TWO) {
+            return;
+        }
         index = index > index2 ? index : index2;
-
-//        System.out.println("######11#####"+filePath);
-//        System.out.println("######filePath.substring(0, index)#####"+filePath.substring(0, index));
-//        System.out.println("######exists#####"+new File(filePath.substring(0, index)).exists());
 
         if (index != -1 && !new File(filePath.substring(0, index)).exists()) {
             System.out.println("mkdir - " + filePath.substring(0, index));

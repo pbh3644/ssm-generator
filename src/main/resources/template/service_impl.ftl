@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * @version 1.0
  * @since ${sysDate?date}
  */
-@Service
+@Service(${class_name}Service)
 public class ${class_name}ServiceImpl extends BaseServiceImpl<${class_name}Mapper, ${class_name}> implements ${class_name}Service {
     //@Resource
     //private ${class_name}Mapper ${class_name?uncap_first}Mapper;

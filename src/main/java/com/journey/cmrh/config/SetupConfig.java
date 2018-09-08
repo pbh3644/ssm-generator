@@ -9,13 +9,17 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /**
- * 配置文件
- */
+ * @author pangbohuan
+ * @description 配置文件
+ * @date 2018-08-20 14:03
+ **/
 @Data
 public class SetupConfig {
     private static SetupConfig instance;
 
-    // project work dir
+    /**
+     * project work dir
+     */
     public static String USER_DIR = System.getProperty("user.dir");
     public static String RESOURCES_PATH = "/src/main/resources/";
     public static final String SEPARATOR = File.separator;
@@ -23,7 +27,10 @@ public class SetupConfig {
     private String project;
     private String packagePath;
     private String entityPackage;
-    private String author = "lh";	// default 'king'
+    /**
+     * default 'king'
+     */
+    private String author = "lh";
     private String model;
 
     private String ignorePrefix;
@@ -39,7 +46,8 @@ public class SetupConfig {
             BufferedReader in = new BufferedReader(new FileReader(USER_DIR + RESOURCES_PATH + "config-ssm.json"));
             String str = "";
             while ((str = in.readLine()) != null) {
-                int contentIndex = str.indexOf("//");		// 处理行注释
+                // 处理行注释
+                int contentIndex = str.indexOf("//");
                 if (contentIndex != -1) {
                     str = str.substring(0, contentIndex);
                 }
@@ -47,7 +55,7 @@ public class SetupConfig {
             }
             in.close();
         } catch (IOException e) {
-            System.out.println("找不到配置文件:" + USER_DIR + RESOURCES_PATH +  "config-ssm.json");
+            System.out.println("找不到配置文件:" + USER_DIR + RESOURCES_PATH + "config-ssm.json");
         }
         return sb.toString();
     }

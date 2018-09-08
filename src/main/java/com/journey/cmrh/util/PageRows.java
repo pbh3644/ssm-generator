@@ -12,8 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Description:
- */
+ * @author pangbohuan
+ * @description PageRows
+ * @date 2018-08-20 14:03
+ **/
 @SuppressWarnings("serial")
 @Data
 public class PageRows<T> implements Serializable {

@@ -8,7 +8,11 @@ package com.journey.cmrh.util;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @author pangbohuan
+ * @description Pagination
+ * @date 2018-08-20 14:03
+ **/
 @SuppressWarnings("serial")
 public class Pagination implements Serializable {
 

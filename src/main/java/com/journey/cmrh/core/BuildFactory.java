@@ -15,9 +15,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 /**
- * @author
- */
+ * @author pangbohuan
+ * @description 引入BOOT模版引擎
+ * @date 2018-08-20 14:03
+ **/
 public class BuildFactory {
     private static Map<String, Map<String, Object>> CACHE = new HashMap<String, Map<String, Object>>();
     private static SetupConfig config = SetupConfig.getInstance();
@@ -80,12 +83,12 @@ public class BuildFactory {
         }
         // 数据准备,可以是Map,List或者是实体
         String className = StringUtil.className(tableName.replace(config.getIgnorePrefix(), ""));
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>(16);
         map.put("package_path", packagePath);
         map.put("entity_package", entityPackage);
         map.put("model_package", MyUtils.buildModelPackage(tableName));
         map.put("table_name", tableName);
-        map.put("class_name", className);//StringUtil.className(tableName);
+        map.put("class_name", className);
         List<Column> columns = dao.queryColumns(tableName);
         map.put("table_column", columns);
         map.put("hasDateColumn", Column.typeContains(columns, "Date"));

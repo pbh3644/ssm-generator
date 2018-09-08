@@ -5,8 +5,10 @@
 package com.journey.cmrh.common.exception;
 
 /**
- * 系统的业务异常（顶级）
- */
+ * @author pangbohuan
+ * @description 系统的业务异常（顶级）
+ * @date 2018-08-20 14:03
+ **/
 public class BussinessException extends RuntimeException {
     private static final long serialVersionUID = 538922474277376456L;
     /**

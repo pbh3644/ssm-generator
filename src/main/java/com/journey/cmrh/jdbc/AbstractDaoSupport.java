@@ -11,17 +11,30 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author
- */
-public abstract class AbstractDaoSupport {
 
-    protected static String driverName = "";    // Load the JDBC driver
-    protected static String url = "";        // a JDBC url
+/**
+ * @author pangbohuan
+ * @description 数据库连接配置父类
+ * @date 2018-08-20 14:03
+ **/
+public abstract class AbstractDaoSupport {
+    private final static String ORACLE = "oracle";
+
+    /**
+     * Load the JDBC driver
+     */
+    protected static String driverName = "";
+    /**
+     * a JDBC url
+     */
+    protected static String url = "";
     protected static String username = "";
     protected static String password = "";
 
-    // init config
+
+    /**
+     * init config
+     * */
     static {
         DbConfig dbConfig = SetupConfig.getInstance().getDbConfig();
         driverName = dbConfig.getDriverClass();
@@ -31,7 +44,7 @@ public abstract class AbstractDaoSupport {
     }
 
     public static AbstractDaoSupport getInstance() {
-        if (driverName.contains("oracle")) {
+        if (driverName.contains(ORACLE)) {
             return new OracleDao();
         }
         return new MysqlDao();
@@ -55,11 +68,27 @@ public abstract class AbstractDaoSupport {
         return list;
     }
 
-
+    /**
+     * 查询所有的表
+     *
+     * @return List
+     */
     public abstract List<String> queryAllTables();
 
+    /**
+     * 查询表中所有的列
+     *
+     * @param tableName 表名
+     * @return List
+     */
     public abstract List<Column> queryColumns(String tableName);
 
+    /**
+     * 查询表中的列对应的数据类型
+     *
+     * @param sqlType 字段名
+     * @return String 类型
+     */
     public abstract String typesConvert(String sqlType);
 
 

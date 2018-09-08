@@ -1,20 +1,30 @@
 package com.journey.cmrh.config;
 
+
 /**
- * 模板映射
- *
- * @author
- */
+ * @author pangbohuan
+ * @description 模板映射
+ * @date 2018-08-20 14:03
+ **/
 public class TemplateMapping {
 
     private String template;
     private String dir;
-    private String suffix = "java";        // default java
+    /**
+     * calc from dir
+     */
+    private String suffix = "java";
     private String project;
-    private String packagePath;            // default calc from dir
-    private String entityPackage;       //default calc from dir
-    private String ePadding = "";        // padding the end of file name
-    private String sPadding = "";        // padding the start of file name
+    /**
+     * default calc from dir
+     */
+    private String packagePath;
+    private String entityPackage;
+    /**
+     * padding the end of file name
+     */
+    private String ePadding = "";
+    private String sPadding = "";
 
     public String buildPackage(String project, String packageP, String modelName) {
 

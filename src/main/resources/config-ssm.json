@@ -13,7 +13,7 @@
         "driverClass": "com.mysql.jdbc.Driver",
         "username": "root",
         "password": "root",
-        "url": "jdbc:mysql:\/\/localhost:3306/journey?useUnicode=true&amp;characterEncoding=UTF-8"
+        "url": "jdbc:mysql:\/\/localhost:3306/journey_system_app?useUnicode=true&amp;characterEncoding=UTF-8"
     },
 
     "ignorePrefix": "",

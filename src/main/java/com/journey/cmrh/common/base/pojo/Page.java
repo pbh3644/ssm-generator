@@ -1,7 +1,7 @@
 package com.journey.cmrh.common.base.pojo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.journey.cmrh.common.util.StringUtils;
+import com.journey.cmrh.util.StringUtil;
 
 import java.io.Serializable;
 import java.util.List;
@@ -214,7 +214,7 @@ public class Page<T> implements Serializable {
     public void setSort(String sort) {
         //排序的属性，仅供缓存操作使用
         this.by = sort;
-        this.sort = StringUtils.toUnderScoreCase(sort);
+        this.sort = StringUtil.toUnderScoreCase(sort);
     }
 
     @JsonIgnore

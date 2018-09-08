@@ -30,9 +30,12 @@ public class Builder {
      */
     private static SetupConfig config = SetupConfig.getInstance();
 
-    //待生成表集合
+    /**
+     * 待生成表集合
+     */
     private static String[] tables = {
-            "sys_user"
+            "application",
+            "organization"
 
 //            "product_category_config",
 //            "product_photo",
@@ -50,7 +53,7 @@ public class Builder {
         for (TemplateMapping m : mappings) {
             // iterator all databases tables.
             for (String tableName : tablesList) {
-                String packagePath = m.buildPackage(config.getProject(), config.getPackagePath(), config.getModel());//MyUtils.getModelName(tableName, ".")
+                String packagePath = m.buildPackage(config.getProject(), config.getPackagePath(), config.getModel());
                 String entityPackage = config.getEntityPackage();
                 Map<String, Object> data = factory.getParams(tableName, packagePath, entityPackage);
                 String className = StringUtil.className(tableName.replace(config.getIgnorePrefix(), ""));

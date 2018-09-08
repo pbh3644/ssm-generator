@@ -1,8 +1,11 @@
 package com.journey.cmrh.config;
 
+
 /**
- * @author
- */
+ * @author pangbohuan
+ * @description Group
+ * @date 2018-08-20 14:03
+ **/
 public class Group {
 
     private String name;
@@ -12,7 +15,9 @@ public class Group {
     public String findGroupName(String tableName) {
         String[] ps = prefix.split(",");
         for (String s : ps) {
-            if (tableName.startsWith(s)) return this.name;
+            if (tableName.startsWith(s)) {
+                return this.name;
+            }
         }
         return null;
     }
