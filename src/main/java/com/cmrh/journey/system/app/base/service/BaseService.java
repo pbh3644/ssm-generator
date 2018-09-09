@@ -1,6 +1,6 @@
-package com.cmrh.journey.system.app.common.base.service;
+package com.cmrh.journey.system.app.base.service;
 
-import com.cmrh.journey.system.app.common.base.pojo.Page;
+import com.cmrh.journey.system.app.base.pojo.Page;
 
 import java.util.List;
 

@@ -1,9 +1,9 @@
-package com.cmrh.journey.system.app.common.base.service.serviceimpl;
+package com.cmrh.journey.system.app.base.service.serviceimpl;
 
-import com.cmrh.journey.system.app.common.base.mapper.BaseMapper;
-import com.cmrh.journey.system.app.common.base.pojo.BaseEntity;
-import com.cmrh.journey.system.app.common.base.pojo.Page;
-import com.cmrh.journey.system.app.common.base.service.BaseService;
+import com.cmrh.journey.system.app.base.mapper.BaseMapper;
+import com.cmrh.journey.system.app.base.pojo.BaseEntity;
+import com.cmrh.journey.system.app.base.pojo.Page;
+import com.cmrh.journey.system.app.base.service.BaseService;
 import com.cmrh.journey.system.app.common.exception.BussinessException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;

@@ -79,9 +79,12 @@
         <trim prefix="set" suffixOverrides=",">
 		<#list table_column as c><#if (c_index>=1)>
             <#if (c.type=="String")>
-            <if test="${c.nameJ} != null and ${c.nameJ} != ''">${c.name?upper_case} = ${r"#"}{${c.nameJ}},</if>
-            <#else>
-			<if test="${c.nameJ} != null">${c.name?upper_case} = ${r"#"}{${c.nameJ}},</if>
+            <if test="${c.nameJ} != null and ${c.nameJ} != ''">and ${c.name?upper_case} = ${r"#"}{${c.nameJ}}</if>
+            </#if>
+            <#if (c.type=="Long")>
+			<if test="${c.nameJ} != null and ${c.nameJ} != 0">and ${c.name?upper_case} = ${r"#"}{${c.nameJ}}</if>
+            <#else >
+            <if test="${c.nameJ} != null">and ${c.name?upper_case} = ${r"#"}{${c.nameJ}}</if>
             </#if>
         </#if></#list>
         </trim>
@@ -98,8 +101,13 @@
 						<if test="item.${c.nameJ} != null and item.${c.nameJ} != ''">${c.name?upper_case} = ${r"#"}
                             {item.${c.nameJ}},
                         </if>
-                    <#else>
-						<if test="item.${c.nameJ} != null">${c.name?upper_case} = ${r"#"}{item.${c.nameJ}},</if>
+                    </#if>
+                    <#if (c.type=="Long")>
+						<if test="item.${c.nameJ} != null and item.${c.nameJ} != 0">${c.name?upper_case} = ${r"#"}
+                            {item.${c.nameJ}},
+                        </if>
+                    <#else >
+                        <if test="item.${c.nameJ} != null">${c.name?upper_case} = ${r"#"}{item.${c.nameJ}},</if>
                     </#if>
                 </#if>
             </#list>

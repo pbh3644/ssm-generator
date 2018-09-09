@@ -1,7 +1,7 @@
 /**
  * Copyright &copy; 2012-2014 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
  */
-package com.cmrh.journey.system.app.common.base.mapper;
+package com.cmrh.journey.system.app.base.mapper;
 
 import java.util.List;
 

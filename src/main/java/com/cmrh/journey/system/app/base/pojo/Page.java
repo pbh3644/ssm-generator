@@ -1,4 +1,4 @@
-package com.cmrh.journey.system.app.common.base.pojo;
+package com.cmrh.journey.system.app.base.pojo;
 
 import com.cmrh.journey.system.app.util.StringUtil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
