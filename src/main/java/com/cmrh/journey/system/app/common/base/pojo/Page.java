@@ -1,4 +1,4 @@
-package com.cmrh.journey.system.app.base.pojo;
+package com.cmrh.journey.system.app.common.base.pojo;
 
 import com.cmrh.journey.system.app.util.StringUtil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -41,7 +41,7 @@ public class Page<T> implements Serializable {
     /**
      * 每页显示的记录数，默认是15
      */
-    private int pageSize = 10;
+    private int pageSize = 15;
     /**
      * 总记录数 设置为“-1”表示不查询总
      */

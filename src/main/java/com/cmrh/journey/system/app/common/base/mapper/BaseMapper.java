@@ -1,7 +1,7 @@
 /**
  * Copyright &copy; 2012-2014 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
  */
-package com.cmrh.journey.system.app.base.mapper;
+package com.cmrh.journey.system.app.common.base.mapper;
 
 import java.util.List;
 
@@ -34,7 +34,7 @@ public interface BaseMapper<T> {
      * @param id 删除的记录的id
      * @return int 删除的条数
      */
-    int delete(String id);
+    int delete(long id);
 
     /**
      * 批量删除
@@ -42,7 +42,7 @@ public interface BaseMapper<T> {
      * @param ids 所有需要删除的记录的id
      * @return int 删除的条数
      */
-    int deleteBatch(String[] ids);
+    int deleteBatch(long[] ids);
 
     /**
      * 逻辑删除（更新is_delete字段为1）
@@ -50,7 +50,7 @@ public interface BaseMapper<T> {
      * @param id 需要逻辑删除的字段
      * @return 删除的条数
      */
-    int deleteLogic(String id);
+    int deleteLogic(long id);
 
     /**
      * 更新数据
@@ -103,6 +103,6 @@ public interface BaseMapper<T> {
      * @param id 查询的id
      * @return 查询到的数据
      */
-    T get(String id);
+    T get(long id);
 
 }

@@ -1,6 +1,6 @@
-package com.cmrh.journey.system.app.base.service;
+package com.cmrh.journey.system.app.common.base.service;
 
-import com.cmrh.journey.system.app.base.pojo.Page;
+import com.cmrh.journey.system.app.common.base.pojo.Page;
 
 import java.util.List;
 
@@ -30,21 +30,21 @@ public interface BaseService<T> {
      *
      * @param id
      */
-    void delete(String id);
+    void delete(long id);
 
     /**
      * 批量删除
      *
      * @param ids
      */
-    void deleteBatch(String[] ids);
+    void deleteBatch(long[] ids);
 
     /**
      * 逻辑删除
      *
      * @param id
      */
-    void deleteLogic(String id);
+    void deleteLogic(long id);
 
     /**
      * 更新数据
@@ -90,7 +90,7 @@ public interface BaseService<T> {
      * @param id
      * @return T
      */
-    T get(String id);
+    T get(long id);
 
     /**
      * 保存数据

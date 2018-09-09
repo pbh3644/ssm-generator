@@ -1,9 +1,9 @@
-package com.cmrh.journey.system.app.base.service.serviceimpl;
+package com.cmrh.journey.system.app.common.base.service.serviceimpl;
 
-import com.cmrh.journey.system.app.base.mapper.BaseMapper;
-import com.cmrh.journey.system.app.base.pojo.BaseEntity;
-import com.cmrh.journey.system.app.base.pojo.Page;
-import com.cmrh.journey.system.app.base.service.BaseService;
+import com.cmrh.journey.system.app.common.base.mapper.BaseMapper;
+import com.cmrh.journey.system.app.common.base.pojo.BaseEntity;
+import com.cmrh.journey.system.app.common.base.pojo.Page;
+import com.cmrh.journey.system.app.common.base.service.BaseService;
 import com.cmrh.journey.system.app.common.exception.BussinessException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
@@ -24,6 +24,7 @@ import java.util.List;
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true, rollbackFor = BussinessException.class)
 public class BaseServiceImpl<D extends BaseMapper<T>, T extends Serializable> implements BaseService<T> {
 
+
     /**
      * 数字 ，0
      */
@@ -41,7 +42,7 @@ public class BaseServiceImpl<D extends BaseMapper<T>, T extends Serializable> im
     protected D dao;
 
     @Override
-    public T get(String id) {
+    public T get(long id) {
         return dao.get(id);
     }
 
@@ -159,7 +160,7 @@ public class BaseServiceImpl<D extends BaseMapper<T>, T extends Serializable> im
 
     @Transactional(rollbackFor = BussinessException.class)
     @Override
-    public void delete(final String id) {
+    public void delete(final long id) {
         int result = dao.delete(id);
         if (result == INT_ZERO) {
             throw new BussinessException("Record not deleted, id=" + id);
@@ -168,7 +169,7 @@ public class BaseServiceImpl<D extends BaseMapper<T>, T extends Serializable> im
 
     @Transactional(rollbackFor = BussinessException.class)
     @Override
-    public void deleteBatch(final String[] ids) {
+    public void deleteBatch(final long[] ids) {
         int result = dao.deleteBatch(ids);
         if (result == INT_ZERO) {
             throw new BussinessException("Records not deleted, ids=" + Arrays.toString(ids));
@@ -177,7 +178,7 @@ public class BaseServiceImpl<D extends BaseMapper<T>, T extends Serializable> im
 
     @Transactional(rollbackFor = BussinessException.class)
     @Override
-    public void deleteLogic(final String id) {
+    public void deleteLogic(final long id) {
         final int result = dao.deleteLogic(id);
         if (result == INT_ZERO) {
             throw new BussinessException("Record not deleted, id=" + id);

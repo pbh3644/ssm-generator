@@ -1,16 +1,17 @@
-package com.cmrh.journey.system.app.base.pojo;
+package com.cmrh.journey.system.app.common.base.pojo;
 
+import com.cmrh.journey.system.app.util.RedisUtils;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
+import java.lang.reflect.ParameterizedType;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.UUID;
 
 
 /**
@@ -18,61 +19,60 @@ import java.util.UUID;
  * @Date：2018-09-08 16:18
  * @Description：pojo基类
  */
+@Data
 public abstract class BaseEntity<T> implements Serializable {
-
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 主键ID
+     */
+    protected Long id;
 
     /**
      * 创建人ID
      */
-    private int sAddUserId;
+    protected Long sAddUserId;
 
     /**
      * 增加时间
      */
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm")
-    private Date sAddTime;
+    protected Date sAddTime;
 
 
     /**
      * 修改人ID
      */
-    private int sUpdateUserId;
+    protected Long sUpdateUserId;
 
     /**
      * 修改时间
      */
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm")
-    private Date sUpdateTime;
+    protected Date sUpdateTime;
 
     /**
      * 删除人ID
      */
-    private int sDeleteUserId;
+    protected Long sDeleteUserId;
 
     /**
      * 删除时间
      */
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm")
-    private Date sDeleteTime;
+    protected Date sDeleteTime;
 
     /**
      * 状态0:正常,1:删除
      */
-    private byte sDeleteFlag;
+    protected byte sDeleteFlag;
 
     /**
      * 备注
      */
-    private String sRemark;
+    protected String sRemark;
 
-
-    /**
-     * 主键:UUID
-     */
-    protected String uuid;
 
     /**
      * 当前实体分页对象
@@ -137,30 +137,11 @@ public abstract class BaseEntity<T> implements Serializable {
     /**
      * 构造函数
      *
-     * @param uuid
+     * @param id
      */
-    public BaseEntity(final String uuid) {
+    public BaseEntity(final long id) {
         super();
-        this.uuid = StringUtils.isEmpty(uuid) ? genUuid() : uuid;
-    }
-
-    /**
-     * 获得uuid
-     *
-     * @return
-     */
-    @JsonProperty("id")
-    public String getUuid() {
-        return uuid;
-    }
-
-    /**
-     * 设置uuid
-     *
-     * @param uuid
-     */
-    public void setUuid(final String uuid) {
-        this.uuid = uuid;
+        this.id = id == 0 || StringUtils.isEmpty(id + "") ? genUuid() : id;
     }
 
 
@@ -181,7 +162,7 @@ public abstract class BaseEntity<T> implements Serializable {
      * @return
      */
     private boolean isIdBlank() {
-        return StringUtils.isBlank(uuid);
+        return id == 0 || StringUtils.isBlank(id + "");
     }
 
     /**
@@ -218,7 +199,7 @@ public abstract class BaseEntity<T> implements Serializable {
      * 保存数据库前预处理
      */
     public void preInsert() {
-        this.uuid = StringUtils.isBlank(this.uuid) ? genUuid() : this.uuid;
+        this.id = id == null || StringUtils.isBlank(id + "") ? genUuid() : this.id;
     }
 
     /**
@@ -229,6 +210,7 @@ public abstract class BaseEntity<T> implements Serializable {
 
     /**
      * 获得关键字
+     * d
      *
      * @return
      */
@@ -326,12 +308,15 @@ public abstract class BaseEntity<T> implements Serializable {
         this.endTime = endTime;
     }
 
-
     /**
-     * 封装JDK自带的UUID, 通过Random数字生成, 中间无-分割.
-     */
-    public static String genUuid() {
-        return UUID.randomUUID().toString().replaceAll("-", "");
+     * 根据雪花算法获取ID数字生成
+     **/
+    public Long genUuid() {
+        //擦除泛型特性
+        ParameterizedType pt = (ParameterizedType) this.getClass().getGenericSuperclass();
+        Class entity = (Class) pt.getActualTypeArguments()[0];
+        //获取雪花ID
+        return RedisUtils.nextId(entity);
     }
 
     /**
@@ -347,7 +332,7 @@ public abstract class BaseEntity<T> implements Serializable {
     @Override
     public String toString() {
         return "BaseEntity{" +
-                ", uuid='" + uuid + '\'' +
+                ", id='" + id + '\'' +
                 ", page=" + page +
                 ", newRecord=" + newRecord +
                 ", keywords='" + keywords + '\'' +
@@ -359,4 +344,5 @@ public abstract class BaseEntity<T> implements Serializable {
                 ", fields=" + Arrays.toString(fields) +
                 '}';
     }
+
 }
