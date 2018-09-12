@@ -32,46 +32,46 @@ public abstract class BaseEntity<T> implements Serializable {
     /**
      * 创建人ID
      */
-    protected Long sAddUserId;
+    protected Long addUserId;
 
     /**
      * 增加时间
      */
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm")
-    protected Date sAddTime;
+    protected Date addTime;
 
 
     /**
      * 修改人ID
      */
-    protected Long sUpdateUserId;
+    protected Long updateUserId;
 
     /**
      * 修改时间
      */
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm")
-    protected Date sUpdateTime;
+    protected Date updateTime;
 
     /**
      * 删除人ID
      */
-    protected Long sDeleteUserId;
+    protected Long deleteUserId;
 
     /**
      * 删除时间
      */
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm")
-    protected Date sDeleteTime;
+    protected Date deleteTime;
 
     /**
      * 状态0:正常,1:删除
      */
-    protected byte sDeleteFlag;
+    protected byte deleteFlag;
 
     /**
      * 备注
      */
-    protected String sRemark;
+    protected String remark;
 
 
     /**
@@ -141,7 +141,7 @@ public abstract class BaseEntity<T> implements Serializable {
      */
     public BaseEntity(final long id) {
         super();
-        this.id = id == 0 || StringUtils.isEmpty(id + "") ? genUuid() : id;
+        this.id = id == 0 || StringUtils.isEmpty(id + "") ? snowflakeId() : id;
     }
 
 
@@ -199,7 +199,7 @@ public abstract class BaseEntity<T> implements Serializable {
      * 保存数据库前预处理
      */
     public void preInsert() {
-        this.id = id == null || StringUtils.isBlank(id + "") ? genUuid() : this.id;
+        this.id = id == null || StringUtils.isBlank(id + "") ? snowflakeId() : this.id;
     }
 
     /**
@@ -311,7 +311,7 @@ public abstract class BaseEntity<T> implements Serializable {
     /**
      * 根据雪花算法获取ID数字生成
      **/
-    public Long genUuid() {
+    public Long snowflakeId() {
         //擦除泛型特性
         ParameterizedType pt = (ParameterizedType) this.getClass().getGenericSuperclass();
         Class entity = (Class) pt.getActualTypeArguments()[0];
