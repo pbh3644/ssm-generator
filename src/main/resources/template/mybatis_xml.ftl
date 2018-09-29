@@ -20,7 +20,7 @@
 
     <!-- 使用like用法：columnName like concat('%',${r"#"}{columnName},'%') -->
     <sql id="page_where">
-        <trim prefix="where" prefixOverrides="and | or ">
+        <trim prefix="where DELETE_FLAG=0" prefixOverrides="and | or ">
 		<#list table_column as c>
 			<#if (c.type=="String")>
             <if test="${c.nameJ} != null and ${c.nameJ} != ''">and ${c.name?upper_case} = ${r"#"}{${c.nameJ}}</if>
@@ -61,7 +61,7 @@
     </delete>
 
     <update id="deleteBatch">
-        update ${table_name} set S_DELETE_FLAG = 1
+        update ${table_name} set DELETE_FLAG = 1
         where ${table_column[0].name} in
         <foreach collection="array" item="id" open="(" separator="," close=")">
         ${r"#"}{id}
@@ -69,7 +69,7 @@
     </update>
 
     <update id="deleteLogic" parameterType="java.lang.Long">
-        update ${table_name} set S_DELETE_FLAG = 1
+        update ${table_name} set DELETE_FLAG = 1
         where ${table_column[0].name} = ${r"#"}{${table_column[0].nameJ}}
     </update>
 
@@ -136,7 +136,7 @@
         select
         <include refid="table_columns"/>
         from ${table_name}
-        where ${table_column[0].name} = ${r"#"}{id}
+        where ${table_column[0].name} = ${r"#"}{id} and DELETE_FLAG=0
     </select>
 
     <!-- 其他自定义SQL -->
