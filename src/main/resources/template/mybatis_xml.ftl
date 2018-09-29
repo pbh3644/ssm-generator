@@ -61,7 +61,7 @@
     </delete>
 
     <update id="deleteBatch">
-        update ${table_name} set DELETE_FLAG = 1
+        update ${table_name} set DELETE_FLAG = 1,set delete_time = now()
         where ${table_column[0].name} in
         <foreach collection="array" item="id" open="(" separator="," close=")">
         ${r"#"}{id}
@@ -69,7 +69,7 @@
     </update>
 
     <update id="deleteLogic" parameterType="java.lang.Long">
-        update ${table_name} set DELETE_FLAG = 1
+        update ${table_name} set DELETE_FLAG = 1,set delete_time = now()
         where ${table_column[0].name} = ${r"#"}{${table_column[0].nameJ}}
     </update>
 
