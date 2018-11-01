@@ -1,9 +1,9 @@
 {
   "project": "journey",
-  "packagePath": "com/cmrh/journey/system/app",
-  "entityPackage": "com.cmrh.journey.system.app.pojo",
+  "packagePath": "com/pbh/journey/system/app",
+  "entityPackage": "com.pbh.journey.system.pojo",
   "model": "mybatis",
-  "author": "pbh",
+  "author": "pangbohuan",
   "dbConfig": {
     "driverClass": "com.mysql.jdbc.Driver",
     "username": "root",

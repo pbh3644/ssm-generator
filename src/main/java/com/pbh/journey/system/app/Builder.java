@@ -34,8 +34,9 @@ public class Builder {
      * 待生成表集合
      */
     private static String[] tables = {
-            "application",
-            "organization"
+            "sys_user",
+            "login_no",
+            "login_log"
 
 //            "product_category_config",
 //            "product_photo",
