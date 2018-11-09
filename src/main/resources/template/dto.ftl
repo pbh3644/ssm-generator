@@ -5,6 +5,7 @@ import ${entity_package}.${class_name};
 
 /**
  * DTO:${class_name}DTO
+ *
  * @author ${author}
  * @version 1.0
  * @since ${sysDate?date}

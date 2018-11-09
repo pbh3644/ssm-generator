@@ -1,7 +1,7 @@
 {
   "project": "journey",
   "packagePath": "com/pbh/journey/system/app",
-  "entityPackage": "com.pbh.journey.system.pojo",
+  "entityPackage": "com.pbh.journey.system.pojo.domain",
   "model": "mybatis",
   "author": "pangbohuan",
   "dbConfig": {

@@ -34,9 +34,12 @@ public class Builder {
      * 待生成表集合
      */
     private static String[] tables = {
-            "sys_user",
-            "login_no",
-            "login_log"
+            "sys_user_dept",
+            "sys_user_role",
+            "sys_user_permission",
+            "sys_dept_permission",
+            "sys_role_permission"
+
 
 //            "product_category_config",
 //            "product_photo",

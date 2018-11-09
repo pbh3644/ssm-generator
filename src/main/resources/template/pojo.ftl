@@ -7,11 +7,12 @@ import java.util.Date;
 import java.math.BigDecimal;
 </#if>
 
-import com.journey.cmrh.common.base.pojo.BaseEntity;
+import com.pbh.journey.system.common.base.pojo.BaseEntity;
 import lombok.Data;
 
 /**
  * entity:${class_name}
+ *
  * @author ${author}
  * @version 1.0
  * @since ${sysDate?date}
