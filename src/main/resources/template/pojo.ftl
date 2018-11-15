@@ -25,7 +25,9 @@ public class ${class_name} extends BaseEntity<${class_name}> {
     /**
      * ${c.remark}
      */
-    <#if (c.name!="uuid")>private ${c.type} ${c.nameJ}; <#if (c.remark?exists && c.remark!="")></#if>
+    <#if (c.name!="id")>
+        private ${c.type} ${c.nameJ};
+        <#if (c.remark?exists && c.remark!="")></#if>
     </#if>
 </#list>
 
