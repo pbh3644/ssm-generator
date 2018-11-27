@@ -7,8 +7,8 @@
   "dbConfig": {
     "driverClass": "com.mysql.jdbc.Driver",
     "username": "root",
-    "password": "root",
-    "url": "jdbc:mysql:\/\/10.200.47.70:3306/journey_system_app?useUnicode=true&amp;characterEncoding=UTF-8"
+    "password": "huanfeng",
+    "url": "jdbc:mysql:\/\/cmft.xuhuanfeng.cn:1080/gip?useUnicode=true&amp;characterEncoding=UTF-8"
   },
   "ignorePrefix": "",
   "templateDir": "/template",

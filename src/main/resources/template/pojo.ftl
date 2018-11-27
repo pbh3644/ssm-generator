@@ -30,9 +30,4 @@ public class ${class_name} extends BaseEntity<${class_name}> {
         <#if (c.remark?exists && c.remark!="")></#if>
     </#if>
 </#list>
-
-    public ${class_name}() {
-    }
-
-
 }

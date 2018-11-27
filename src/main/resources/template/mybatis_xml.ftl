@@ -116,7 +116,7 @@
         <include refid="table_columns"/>
         from ${table_name}
         <include refid="page_where"/>
-        LIMIT #{page.page},#{page.pageSize}
+        <#-- LIMIT #{page.page},#{page.pageSize} -->
     </select>
 
     <select id="getCount" resultType="int">
