@@ -1,9 +1,6 @@
 package ${package_path}.service.impl;
 
-import com.pbh.journey.system.common.base.service.impl.BaseServiceImpl;
-import ${package_path}.service.${class_name}Service;
-import ${package_path}.mapper.${class_name}Mapper;
-import ${entity_package}.${class_name};
+import com.sydata.cscm.common.service.impl.BusinessBaseServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,7 +11,7 @@ import org.springframework.stereotype.Service;
  * @since ${sysDate?date}
  */
 @Service("${class_name}Service")
-public class ${class_name}ServiceImpl extends BaseServiceImpl<${class_name}Mapper, ${class_name}> implements ${class_name}Service {
+public class ${class_name}ServiceImpl extends BusinessBaseServiceImpl implements ${class_name}Service {
     //@Resource
     //private ${class_name}Mapper ${class_name?uncap_first}Mapper;
 

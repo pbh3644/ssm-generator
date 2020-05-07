@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="${package_path}.mapper.${class_name}Mapper">
+<mapper namespace="${package_path}.mapper.primary.wms.${class_name}Mapper">
     <resultMap type="${entity_package}.${class_name}" id="${class_name?uncap_first}ResultMap">
 		<#list table_column as c>
             <result property="${c.nameJ}" column="${c.name?upper_case}"/>

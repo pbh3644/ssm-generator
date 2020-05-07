@@ -1,8 +1,8 @@
 package ${package_path}.mapper;
 
-import ${entity_package}.${class_name};
-import com.pbh.journey.system.common.base.mapper.BaseMapper;
-import org.apache.ibatis.annotations.Mapper;
+
+import com.sydata.cscm.common.dao.BaseMultiMapper;
+import org.springframework.stereotype.Repository;
 
 /**
  * Dao Interface:${class_name}Mapper
@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Mapper;
  * @version 1.0
  * @since ${sysDate?date}
  */
-@Mapper
-public interface ${class_name}Mapper extends BaseMapper<${class_name}> {
+@Repository
+public interface ${class_name}Mapper extends BaseMultiMapper {
 
 }

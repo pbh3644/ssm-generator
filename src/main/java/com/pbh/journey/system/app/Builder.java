@@ -34,11 +34,7 @@ public class Builder {
      * 待生成表集合
      */
     private static String[] tables = {
-            "sys_user_dept",
-            "sys_user_role",
-            "sys_user_permission",
-            "sys_dept_permission",
-            "sys_role_permission"
+            "trs_audit_qty"
 
 
 //            "product_category_config",

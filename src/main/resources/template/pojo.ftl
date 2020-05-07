@@ -7,8 +7,10 @@ import java.util.Date;
 import java.math.BigDecimal;
 </#if>
 
-import com.pbh.journey.system.common.base.pojo.BaseEntity;
+import java.io.Serializable;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
 /**
  * entity:${class_name}
@@ -18,16 +20,14 @@ import lombok.Data;
  * @since ${sysDate?date}
  */
 @Data
-public class ${class_name} extends BaseEntity<${class_name}> {
-    private static final long serialVersionUID = 1L;
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+public class ${class_name} implements Serializable {
 
 <#list table_column as c>
     /**
      * ${c.remark}
      */
-    <#if (c.name!="id")>
-        private ${c.type} ${c.nameJ};
-        <#if (c.remark?exists && c.remark!="")></#if>
-    </#if>
+    private ${c.type} ${c.nameJ};
 </#list>
 }

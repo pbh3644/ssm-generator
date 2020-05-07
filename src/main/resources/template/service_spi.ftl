@@ -1,7 +1,7 @@
 package ${package_path}.service;
 
-import ${entity_package}.${class_name};
-import com.pbh.journey.system.common.base.service.BaseService;
+
+import com.sydata.cscm.common.service.IBusinessBaseService;
 
 /**
  * Service Interface:${class_name}Service
@@ -10,5 +10,5 @@ import com.pbh.journey.system.common.base.service.BaseService;
  * @version 1.0
  * @since ${sysDate?date}
  */
-public interface ${class_name}Service extends BaseService<${class_name}> {
+public interface ${class_name}Service extends IBusinessBaseService {
 }
