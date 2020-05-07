@@ -1,14 +1,14 @@
 {
-  "project": "journey",
-  "packagePath": "com/pbh/journey/system/app",
-  "entityPackage": "com.pbh.journey.system.pojo.domain",
+  "project": "cscm-slll",
+  "packagePath": "com/sydata/cscm/transfer",
+  "entityPackage": "com.sydata.cscm.transfer.bean",
   "model": "mybatis",
   "author": "pangbohuan",
   "dbConfig": {
     "driverClass": "com.mysql.jdbc.Driver",
     "username": "root",
-    "password": "huanfeng",
-    "url": "jdbc:mysql:\/\/cmft.xuhuanfeng.cn:1080/gip?useUnicode=true&amp;characterEncoding=UTF-8"
+    "password": "123456",
+    "url": "jdbc:mysql:\/\/192.168.2.228:3306/cscm?serverTimezone=Asia/Shanghai&autoReconnect=true&useUnicode=true&characterEncoding=utf8&allowMultiQueries=true"
   },
   "ignorePrefix": "",
   "templateDir": "/template",
@@ -74,9 +74,7 @@
     },
     {
       "template": "mybatis_xml.ftl",
-      //"dir"		:	"${project}/${packagePath}/dao/${model}",
       "dir": "${project}/mappings/${model}",
-      //"dir"		:	"${project}/mappings",
       "ePadding": "Mapper",
       "packagePath": "${packagePath}",
       "suffix": "xml"
