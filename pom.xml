@@ -21,7 +21,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <lombok.version>1.16.10</lombok.version>
-        <boot.version>2.0.4.RELEASE</boot.version>
+        <boot.version>2.5.12</boot.version>
         <journey-system.version>0.0.1</journey-system.version>
         <jedis.version>2.9.0</jedis.version>
         <jwt.version>0.9.1</jwt.version>
