@@ -38,7 +38,7 @@
         <fastjson.version>1.2.49</fastjson.version>
         <admin.version>2.0.2</admin.version>
         <collect.version>snapshot-20080530</collect.version>
-        <gson.version>2.8.5</gson.version>
+        <gson.version>2.8.9</gson.version>
     </properties>
 
     <dependencies>
