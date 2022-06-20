@@ -25,7 +25,7 @@
         <journey-system.version>0.0.1</journey-system.version>
         <jedis.version>2.9.0</jedis.version>
         <jwt.version>0.9.1</jwt.version>
-        <mysql.version>5.1.41</mysql.version>
+        <mysql.version>8.0.28</mysql.version>
         <druid.version>1.1.0</druid.version>
         <mybatis.version>1.3.1</mybatis.version>
         <mapper.version>1.2.4</mapper.version>
